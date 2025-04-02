@@ -22,7 +22,7 @@ void    father_routine(pid_t pid)
     int status;
 
     printf(" sou o adulto e o pid que recebi foi esse: %d\n" , pid);
-    printf("esperando a criança! %d\n" , pid)
+    printf("esperando a criança! %d\n" , pid);
     waitpid(pid, &status, 0);
     if(WIFEXITED(status))
     {
@@ -35,6 +35,16 @@ void    father_routine(pid_t pid)
 }
 int main()
 {
-    
+    pid_t pid;
+
+    pid = fork();
+    if(pid > 0)
+    {
+        father_routine(pid);
+    }
+    else if (pid == 0)
+    {
+        child_routine(pid);
+    }
     return (0);
 }
