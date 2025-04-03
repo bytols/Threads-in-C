@@ -16,5 +16,14 @@ int main()
     pthread_t tid2;
 
     pthread_create(&tid1, NULL, thread_routine, NULL);
+    printf("creating First Thread %d\n" , tid1);
     pthread_create(&tid2, NULL, thread_routine, NULL);
+    printf("creating Second Thread %d\n" , tid2);
+
+    pthread_join(tid1, NULL);
+    printf("esperando tid1\n");
+    pthread_join(tid2, NULL);
+    printf("esperando tid2\n");
+
+    return (0);
 }
